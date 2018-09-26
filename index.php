@@ -5,7 +5,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 // Process only when method is POST
 if($method == 'POST'){
 	$requestBody = file_get_contents('php://input');
-	$json = json_decode($requestBody);
+	$json = json_decode($_POST["data"]);
 
 	$event = $json->event;
 	$from = $json->from;

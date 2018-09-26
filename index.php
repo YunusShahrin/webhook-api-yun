@@ -23,6 +23,9 @@ if($method == 'POST'){
 		$custom_data = "failed-1";
 		$speech = "From: " . $from . ", To: " . $to . ", Status: Failed.";
 	}
+	else{
+		$speech = "Parameter not complete";
+	}
 
 	$response = new \stdClass();
 	$response->speech = $speech;

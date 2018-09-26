@@ -7,12 +7,13 @@ if($method == 'POST'){
 	$requestBody = file_get_contents('php://input');
 	$json = json_decode($requestBody);
 
-	$event = $json->result->parameters->event;
-	$from = $json->result->parameters->from;
-	$to = $json->result->parameters->to;
+	$event = $json->event;
+	$from = $json->from;
+	$to = $json->to;
+	$text = $json->text;
 	
 	if($event == "INBOX") {
-		$text = $json->result->parameters->text;
+		
 		$speech = "From: " . $from . ", Msg: " . $text . ".";
 	}
 	else if($event == "MESSAGEPROCESSED") {

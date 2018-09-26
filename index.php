@@ -7,24 +7,21 @@ if($method == 'POST'){
 	$requestBody = file_get_contents('php://input');
 	$json = json_decode($requestBody);
 
-	$text = $json->result->parameters->text;
-
-	switch ($text) {
-		case 'hi':
-			$speech = "Hi, Nice to meet you";
-			break;
-
-		case 'bye':
-			$speech = "Bye, good night";
-			break;
-
-		case 'anything':
-			$speech = "Yes, you can type anything here.";
-			break;
-		
-		default:
-			$speech = "Sorry, I didnt get that. Please ask me something else.";
-			break;
+	$event = $json->result->parameters->event;
+	$from = $json->result->parameters->from;
+	$to = $json->result->parameters->to;
+	
+	if($event == "INBOX") {
+		$text = $json->result->parameters->text;
+		$speech = "From: " . $from . ", Msg: " . $text . ".";
+	}
+	else if()($event == "MESSAGEPROCESSED") {
+		$custom_data = "process-1";
+		$speech = "From: " . $from . ", To: " . $to . ", Status: Processed.";
+	}
+	else if()($event == "MESSAGEFAILED") {
+		$custom_data = "failed-1";
+		$speech = "From: " . $from . ", To: " . $to . ", Status: Failed.";
 	}
 
 	$response = new \stdClass();

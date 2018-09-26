@@ -15,11 +15,11 @@ if($method == 'POST'){
 		$text = $json->result->parameters->text;
 		$speech = "From: " . $from . ", Msg: " . $text . ".";
 	}
-	else if()($event == "MESSAGEPROCESSED") {
+	else if($event == "MESSAGEPROCESSED") {
 		$custom_data = "process-1";
 		$speech = "From: " . $from . ", To: " . $to . ", Status: Processed.";
 	}
-	else if()($event == "MESSAGEFAILED") {
+	else if($event == "MESSAGEFAILED") {
 		$custom_data = "failed-1";
 		$speech = "From: " . $from . ", To: " . $to . ", Status: Failed.";
 	}
